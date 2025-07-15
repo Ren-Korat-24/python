@@ -29,7 +29,7 @@ print(mtset3)
 # print(mtset3)
 
 # mtset3=myset.difference(myset2,mtset3,set3,set4)
-# print(mtset3)
+# print(mtset3)F
 
 # mtset3=myset|myset2
 
