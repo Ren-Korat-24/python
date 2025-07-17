@@ -22,7 +22,7 @@ class Bank:
             else:
                 print("Minimum deposit is 2000!")
 
-    def dis(self):
+    def displayDetails(self):
         print(f"{self.name}\t{self.acnum}\t\t{self.balance}")
 
     def creditMoney(self):
@@ -38,7 +38,7 @@ class Bank:
             self.balance -= money
             print("Withdrawal Successful.\nRemaining Balance:", self.balance)
 
-
+    
 # Main Program
 AcountDetails = []
 
@@ -77,7 +77,7 @@ while True:
         case 2:
             print("\nName\tAccount no\tBalance")
             for a in AcountDetails:
-                a.dis()
+                a.displayDetails()
 
         case 3:
             fnum = int(input("Enter account number: "))
