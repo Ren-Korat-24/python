@@ -49,11 +49,13 @@ def account_exists(acnum):
     return False
 
 while True:
+    print("\n========== Bank Management System ==========")
     print("\n1: Open Account")
     print("2: Show Accounts")
     print("3: Credit")
     print("4: Withdrawal")
     print("5: Exit")
+    print("==========================================")
     choice = int(input("Choice: "))
 
     match choice:

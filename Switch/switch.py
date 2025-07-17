@@ -1,18 +1,14 @@
-ch = int(input("Enter Your choice = "))
+a=int(input("Enter the number:"))
 
-match ch:
+match a:
     case 1:
         print("One")
     case 2:
         print("Two")
     case 3:
-        print("three")
+        print("Three")
     case 4:
-        print("four")
-    case 6:
-        print("Six")
-    case 7:
-        print("Seven")
+        print("Four")
     case _:
-        print("Default case")
+        print("Defualt Case..")        
         
