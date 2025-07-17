@@ -7,7 +7,6 @@ class Bank:
 
     def personDetails(self):
         self.name = input("Enter the name: ")
-        self.acnum = int(input("Enter the account number: "))
 
         while True:
             self.password = input("Enter the Password (min 8 characters): ")
@@ -23,34 +22,31 @@ class Bank:
             else:
                 print("Minimum deposit is 2000!")
 
-
     def dis(self):
         print(f"{self.name}\t{self.acnum}\t\t{self.balance}")
 
-    def creditMoney(self, repassword,acnum):
-        if self.acnum==fnum:
-            self.password == repassword
-            money = int(input("Enter the Amount to deposit: "))
-            self.balance += money
-            print("Credit Successful.\nUpdated balance:", self.balance)
-        else:
-            print("Password Incorrect!")
+    def creditMoney(self):
+        money = int(input("Enter the Amount to deposit: "))
+        self.balance += money
+        print("Credit Successful.\nUpdated balance:", self.balance)
 
-    def withdrawMoney(self, repassword):
-        if self.password == repassword:
-            money = int(input("Enter the Amount to withdraw: "))
-            if money > self.balance:
-                print("Insufficient Balance...")
-            else:
-                self.balance -= money
-                print("Withdrawal Successful.\nRemaining Balance:", self.balance)
+    def withdrawMoney(self):
+        money = int(input("Enter the Amount to withdraw: "))
+        if money > self.balance:
+            print("Insufficient Balance...")
         else:
-            print("Password Incorrect!")
-
+            self.balance -= money
+            print("Withdrawal Successful.\nRemaining Balance:", self.balance)
 
 
 # Main Program
 AcountDetails = []
+
+def account_exists(acnum):
+    for a in AcountDetails:
+        if a.acnum == acnum:
+            return True
+    return False
 
 while True:
     print("\n1: Open Account")
@@ -64,9 +60,17 @@ while True:
         case 1:
             n = int(input("Number of new accounts to open: "))
             for _ in range(n):
+                while True:
+                    acnum = int(input("Enter a unique account number: "))
+                    if account_exists(acnum):
+                        print("Account already exists! Try another number.")
+                    else:
+                        break
                 b = Bank()
+                b.acnum = acnum  # Set unique account number
                 b.personDetails()
                 AcountDetails.append(b)
+                print("Account created successfully.")
 
         case 2:
             print("\nName\tAccount no\tBalance")
@@ -75,28 +79,38 @@ while True:
 
         case 3:
             fnum = int(input("Enter account number: "))
-            repass = input("Enter password: ")
-            found = False
+            account = None
             for a in AcountDetails:
-                   if a.creditMoney(repass):
-                    found = True
+                if a.acnum == fnum:
+                    account = a
                     break
-            if not found:
-                print("No account found.")
+            if account:
+                repass = input("Enter password: ")
+                if account.password == repass:
+                    account.creditMoney()
+                else:
+                    print("Incorrect password.")
+            else:
+                print("Account not found.Go to the case 1....")
 
         case 4:
             fnum = int(input("Enter account number: "))
-            repass = input("Enter password: ")
-            found = False
+            account = None
             for a in AcountDetails:
-                if a.withdrawMoney(repass):
-                    found = True
+                if a.acnum == fnum:
+                    account = a
                     break
-            if not found:
-                print("No account found.")
+            if account:
+                repass = input("Enter password: ")
+                if account.password == repass:
+                    account.withdrawMoney()
+                else:
+                    print("Incorrect password.")
+            else:
+                print("Account not found.Go to the case 1....")
 
         case 5:
-            print("Thank you for using the Bank System.")
+            print("Thank you for using the Bank System. Goodbye!")
             break
 
         case _:
