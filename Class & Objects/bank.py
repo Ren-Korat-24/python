@@ -5,31 +5,34 @@ class Bank:
         self.password = ""
         self.balance = 0
 
+        #Basic  Details
     def personDetails(self):
         self.name = input("Enter the name: ")
-
+        #check Passoword
         while True:
             self.password = input("Enter the Password (min 8 characters): ")
             if len(self.password) >= 8:
                 break
             else:
                 print("Password is too short...")
-
+        #Check  Balance
         while True:
             self.balance = int(input("Enter Amount (minimum 2000): "))
             if self.balance >= 2000:
                 break
             else:
                 print("Minimum deposit is 2000!")
-
+    #Display
     def displayDetails(self):
         print(f"{self.name}\t{self.acnum}\t\t{self.balance}")
 
+    #Credit
     def creditMoney(self):
         money = int(input("Enter the Amount to deposit: "))
         self.balance += money
         print("Credit Successful.Updated balance:", self.balance)
 
+    #Debit
     def withdrawMoney(self):
         money = int(input("Enter the Amount to withdraw: "))
         if money > self.balance:
@@ -38,7 +41,8 @@ class Bank:
             self.balance -= money
             print("Withdrawal Successful...\nRemaining Balance:", self.balance)
 
-    def transferMoney(self,amouny,receiver):
+    #Tranfer
+    def transferMoney(self,amount,receiver):
         if amount>self.balance:
             print("Insufficient Balance.Transfer Failde..")
         else:
@@ -47,12 +51,14 @@ class Bank:
             print(f"₹{amount} transferred successfully to Account {receiver.acnum}")
             print(f"Your remaining balance: ₹{self.balance}")
 
+#Store
 AcountDetails = []
 
+#account function
 def get_data(acnum):
     for a in AcountDetails:
         if a.acnum == acnum:
-            return True
+            return a     
     return None
 
 while True:
@@ -130,7 +136,7 @@ while True:
                 repass = input("Enter the Password:")
                 if sender.password==repass:
                     amount = int(input("Enter amount to transfer: "))
-                    sender.transferMoney(receiver,amount)
+                    sender.transferMoney(amount,receiver)
                 else:
                     print("Invalid Password...")
             else:
