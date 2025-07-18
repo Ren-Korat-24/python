@@ -28,7 +28,7 @@ class Bank:
     def creditMoney(self):
         money = int(input("Enter the Amount to deposit: "))
         self.balance += money
-        print("Credit Successful.\nUpdated balance:", self.balance)
+        print("Credit Successful.Updated balance:", self.balance)
 
     def withdrawMoney(self):
         money = int(input("Enter the Amount to withdraw: "))
@@ -36,17 +36,24 @@ class Bank:
             print("Insufficient Balance...")
         else:
             self.balance -= money
-            print("Withdrawal Successful.\nRemaining Balance:", self.balance)
+            print("Withdrawal Successful...\nRemaining Balance:", self.balance)
 
-    
-# Main Program
+    def transferMoney(self,amouny,receiver):
+        if amount>self.balance:
+            print("Insufficient Balance.Transfer Failde..")
+        else:
+            sender.balance-=amount
+            receiver.balance+=amount
+            print(f"₹{amount} transferred successfully to Account {receiver.acnum}")
+            print(f"Your remaining balance: ₹{self.balance}")
+
 AcountDetails = []
 
-def account_exists(acnum):
+def get_data(acnum):
     for a in AcountDetails:
         if a.acnum == acnum:
             return True
-    return False
+    return None
 
 while True:
     print("\n========== Bank Management System ==========")
@@ -54,7 +61,8 @@ while True:
     print("2: Show Accounts")
     print("3: Credit")
     print("4: Withdrawal")
-    print("5: Exit")
+    print("5: Tranfer")
+    print("6: Exit")
     print("==========================================")
     choice = int(input("Choice: "))
 
@@ -64,7 +72,7 @@ while True:
             for _ in range(n):
                 while True:
                     acnum = int(input("Enter a unique account number: "))
-                    if account_exists(acnum):
+                    if get_data(acnum):
                         print("Account already exists! Try another number.")
                     else:
                         break
@@ -81,17 +89,17 @@ while True:
 
         case 3:
             fnum = int(input("Enter account number: "))
-            account = None
+            account = []
             for a in AcountDetails:
                 if a.acnum == fnum:
                     account = a
                     break
             if account:
                 repass = input("Enter password: ")
-                if account.password == repass:
-                    account.creditMoney()
+                if account.password==repass:
+                    a.creditMoney()
                 else:
-                    print("Incorrect password.")
+                    print("Invalid password...")
             else:
                 print("Account not found.Go to the case 1....")
 
@@ -104,14 +112,31 @@ while True:
                     break
             if account:
                 repass = input("Enter password: ")
-                if account.password == repass:
-                    account.withdrawMoney()
+                if account.password==repass:
+                    a.withdrawMoney()
                 else:
                     print("Incorrect password.")
             else:
                 print("Account not found.Go to the case 1....")
 
         case 5:
+            fnum1 = int(input("Enter account number of sender: "))
+            fnum2 = int(input("Enter account number of receiver: "))
+            
+            sender = get_data(fnum1)
+            receiver = get_data(fnum2)
+
+            if sender and receiver:
+                repass = input("Enter the Password:")
+                if sender.password==repass:
+                    amount = int(input("Enter amount to transfer: "))
+                    sender.transferMoney(receiver,amount)
+                else:
+                    print("Invalid Password...")
+            else:
+                print("Invalid sender or receiver account number...")
+
+        case 6:
             print("Thank you for using the Bank System. Goodbye!")
             break
 
