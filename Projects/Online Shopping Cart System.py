@@ -71,7 +71,7 @@ while True:
     print("4: View Cart")
     print("5: Save & Exit")
     print("==========================================")
-    choice = input("Choice: ")
+    choice = int(input("Choice: "))
 
     match choice:
         case 1:
@@ -102,7 +102,7 @@ while True:
         case 4:
             cart.view_cart()
 
-        case "5":
+        case 5:
             cart.save_cart()
             print("\n🛍️ Thank you for shopping with us! Goodbye.")
             break
