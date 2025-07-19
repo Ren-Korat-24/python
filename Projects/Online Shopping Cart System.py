@@ -59,7 +59,7 @@ products = [
     Product(1, "Laptop", 55000),
     Product(2, "Headphones", 1500),
     Product(3, "Mouse", 500),
-    Product(4, "Keyboard", 800),
+    Product(4, "Keyboard", 800),    
     Product(5, "Monitor", 7000),
 ]
 
@@ -74,12 +74,12 @@ while True:
     choice = input("Choice: ")
 
     match choice:
-        case "1":
+        case 1:
             print("\n📦 Available Products:")
             for p in products:
                 print(f"{p.pid}. {p.name} - ₹ {p.price}")
 
-        case "2":
+        case 2:
             pid_input = input("Enter Product ID to add: ")
             if pid_input.isdigit():
                 pid = int(pid_input)
@@ -91,7 +91,7 @@ while True:
             else:
                 print("Please enter a valid number.")
 
-        case "3":
+        case 3:
             pid_input = input("Enter Product ID to remove: ")
             if pid_input.isdigit():
                 pid = int(pid_input)
@@ -99,7 +99,7 @@ while True:
             else:
                 print("Please enter a valid number.")
 
-        case "4":
+        case 4:
             cart.view_cart()
 
         case "5":
