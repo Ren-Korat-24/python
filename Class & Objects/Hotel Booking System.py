@@ -18,6 +18,8 @@ class Hotel():
         else:
             print("Booked Rooms:", self.booked_rooms)
 
+    def show_available_room(self):
+        available_rooms = [] 
 
 hotel = Hotel()
 
@@ -44,6 +46,9 @@ while True:
 
         case 2:
             hotel.show_booked_rooms()
+
+        case 3:
+            hotel.show_available_room()
 
         case 4:
             print("Thank you for using the Hotel Management System.")
