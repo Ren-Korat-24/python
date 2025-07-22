@@ -1,16 +1,16 @@
 class Hotel():
     def __init__(self):
         self.total_Room = 100
-        self.booked_rooms = []
+        self.booked_rooms = {}
 
-    def book_room(self, room_no):
+    def book_room(self, room_no,customer_name):
         if room_no < 1 or room_no > 100:
             print("Room number must be between 1 and 100.")
         elif room_no in self.booked_rooms:
             print(f"Room {room_no} is already booked.")
         else:
-            self.booked_rooms.append(room_no)
-            print(f"Room {room_no} has been successfully booked.")
+            self.booked_rooms[room_no]=customer_name
+            print(f"Room {room_no} has been successfully booked for {customer_name}.")
 
     def show_booked_rooms(self):
         if not self.booked_rooms:
@@ -19,13 +19,22 @@ class Hotel():
             print("Booked Rooms:", self.booked_rooms)
 
     def show_available_room(self):
-        available_rooms = [] 
-        for i in range(available_rooms):
-            if available_rooms in self.booked_rooms:
-                print("THis is available")
-            else:
-                print("Booked Rooms:", self.booked_room)
-            
+        available_rooms = []
+        for room in range(1, self.total_Room + 1):
+            if room not in self.booked_rooms:
+             available_rooms.append(room_no)
+
+        if len(available_rooms) == 0:
+            print("No available rooms.")
+        else:
+            print("Available Rooms:", available_rooms)
+        
+    def cancel_booking(self,room_no):
+        if room_no in self.booked_room:
+            del self.booked_rooms[room_no]
+            print(f"Booking for Room {room_no} has been cancelled.")
+        else:
+            print(f"Room {room_no} is not booked.")
 
 hotel = Hotel()
 
@@ -33,7 +42,7 @@ while True:
     print("\n========== Hotel Management System ==========")
     print("1: Book Room")
     print("2: Booked Rooms")
-    print("3: Available Rooms")
+    print("3: Cancel Rooms")
     print("4: Exit")
     print("=============================================")
 
@@ -44,17 +53,19 @@ while True:
             n = int(input("How many rooms you want? "))
             for i in range(n):
                 r1 = input(f"Enter room number {i + 1}: ")
+                customer_name=input("Enter the name:")
                 if r1.isdigit():
                     room_no = int(r1)
-                    hotel.book_room(room_no)
+                    hotel.book_room(room_no,customer_name)
                 else:
                     print("Please enter a valid room number.")
 
         case 2:
             hotel.show_booked_rooms()
-
-        case 3:
             hotel.show_available_room()
+            
+        case 3:
+           hotel.cancel_booking()
 
         case 4:
             print("Thank you for using the Hotel Management System.")
