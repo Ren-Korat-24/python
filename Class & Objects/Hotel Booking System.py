@@ -20,6 +20,12 @@ class Hotel():
 
     def show_available_room(self):
         available_rooms = [] 
+        for i in range(available_rooms):
+            if available_rooms in self.booked_rooms:
+                print("THis is available")
+            else:
+                print("Booked Rooms:", self.booked_room)
+            
 
 hotel = Hotel()
 
