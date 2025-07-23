@@ -43,7 +43,7 @@ class Student:
     def studentHistory(self):
         with open("Student_Records.txt", "a") as s:
             s.write("\t\t\t\t\t\tStudent Records ")
-            s.write(f"\nRoll No\t\tName\tHindi\tGujarati\tSS\t\tTotal\tPercentage\tGrade")
+            s.write(f"\nRoll No\t\tNattme\tHindi\tGujarati\tSS\t\tTotal\tPercentage\tGrade")
 
         with open("Student_Records.txt", "a") as s:
             s.write(f"\n{self.rno}\t\t\t{self.name}\t\t{self.hindi}\t\t{self.gujarati}\t\t\t{self.ss}\t\t{self.total}\t\t{self.percentage:.2f}%\t\t{self.grade}\n")
