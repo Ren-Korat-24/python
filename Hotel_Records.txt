@@ -1,0 +1,2 @@
+						Hotel Records 
+{1: 'r'}

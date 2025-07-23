@@ -30,11 +30,16 @@ class Hotel():
             print("Available Rooms:", available_rooms)
         
     def cancel_booking(self,room_no):
-        if room_no in self.booked_room:
+        if room_no in self.booked_rooms:
             del self.booked_rooms[room_no]
             print(f"Booking for Room {room_no} has been cancelled.")
         else:
             print(f"Room {room_no} is not booked.")
+
+    def hotel_records(self):
+        with open("Hotel_Records.txt","a") as hotel:
+            hotel.write("\t\t\t\t\t\tHotel Records ")
+            hotel.write(f"\n{self.book_room},{self.booked_rooms}")
 
 hotel = Hotel()
 
@@ -59,13 +64,16 @@ while True:
                     hotel.book_room(room_no,customer_name)
                 else:
                     print("Please enter a valid room number.")
+            hotel.hotel_records()
 
         case 2:
             hotel.show_booked_rooms()
             hotel.show_available_room()
+            hotel.hotel_records()
             
         case 3:
-           hotel.cancel_booking()
+            hotel.cancel_booking(room_no)
+            hotel.hotel_records()
 
         case 4:
             print("Thank you for using the Hotel Management System.")
