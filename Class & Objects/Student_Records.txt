@@ -1,3 +1,0 @@
-						Student Records 
-Roll No		Name	Hindi	Gujarati	SS		Total	Percentage	Grade
-1			ee		99		98			97		294		98.00%		Pass

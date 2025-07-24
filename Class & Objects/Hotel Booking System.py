@@ -22,7 +22,7 @@ class Hotel():
         available_rooms = []
         for room in range(1, self.total_Room + 1):
             if room not in self.booked_rooms:
-             available_rooms.append(room_no)
+             available_rooms.append(room)
 
         if len(available_rooms) == 0:
             print("No available rooms.")
@@ -37,9 +37,11 @@ class Hotel():
             print(f"Room {room_no} is not booked.")
 
     def hotel_records(self):
-        with open("Hotel_Records.txt","a") as hotel:
-            hotel.write("\t\t\t\t\t\tHotel Records ")
-            hotel.write(f"\n{self.book_room},{self.booked_rooms}")
+         with open("Hotel_Records.txt", "a") as hotel:
+            hotel.write("\n========== Hotel Records ==========\n")
+            for room_no, name in self.booked_rooms.items():
+                hotel.write(f"Room {room_no}: {name}\n")
+            hotel.write("====================================\n")
 
 hotel = Hotel()
 
@@ -51,33 +53,48 @@ while True:
     print("4: Exit")
     print("=============================================")
 
-    choice = int(input("Choice: "))
+    try:
+        choice = int(input("Choice: "))
+    except ValueError:
+        print("Enter a valid number:")
+        continue  # Restart the loop if invalid input
 
     match choice:
         case 1:
-            n = int(input("How many rooms you want? "))
-            for i in range(n):
-                r1 = input(f"Enter room number {i + 1}: ")
-                customer_name=input("Enter the name:")
-                if r1.isdigit():
-                    room_no = int(r1)
-                    hotel.book_room(room_no,customer_name)
-                else:
-                    print("Please enter a valid room number.")
-            hotel.hotel_records()
+            try:
+                n = int(input("How many rooms you want? "))
+                for i in range(n):
+                    r1 = input(f"Enter room number {i + 1}: ")
+                    customer_name = input("Enter the name: ")
+                    if r1.isdigit():
+                        room_no = int(r1)
+                        hotel.book_room(room_no, customer_name)
+                    else:
+                        print("Please enter a valid room number.")
+                hotel.hotel_records()
+            except:
+                print("Error booking room..")
 
         case 2:
             hotel.show_booked_rooms()
             hotel.show_available_room()
             hotel.hotel_records()
-            
+
         case 3:
-            hotel.cancel_booking(room_no)
-            hotel.hotel_records()
+            try:
+                r1 = input("Enter room number to cancel: ")
+                if r1.isdigit():
+                    room_no = int(r1)
+                    hotel.cancel_booking(room_no)
+                    hotel.hotel_records()
+                else:
+                    print("Invalid room number.")
+            except:
+                print("Error cancelling room.")
 
         case 4:
             print("Thank you for using the Hotel Management System.")
-            break
+            break 
 
         case _:
             print("Invalid choice. Please select from 1 to 4.")

@@ -1,3 +1,0 @@
-
-Name	Account No	Balance		Password
-rr		1			2000		12345678
