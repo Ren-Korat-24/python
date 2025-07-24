@@ -22,7 +22,7 @@ class Hotel():
         available_rooms = []
         for room in range(1, self.total_Room + 1):
             if room not in self.booked_rooms:
-             available_rooms.append(room)
+             available_rooms.append(room )
 
         if len(available_rooms) == 0:
             print("No available rooms.")
@@ -57,7 +57,7 @@ while True:
         choice = int(input("Choice: "))
     except ValueError:
         print("Enter a valid number:")
-        continue  # Restart the loop if invalid input
+        continue  #Restart the loop if invalid input
 
     match choice:
         case 1:
@@ -78,10 +78,9 @@ while True:
         case 2:
             hotel.show_booked_rooms()
             hotel.show_available_room()
-            hotel.hotel_records()
 
         case 3:
-            try:
+            try:    
                 r1 = input("Enter room number to cancel: ")
                 if r1.isdigit():
                     room_no = int(r1)
@@ -93,6 +92,7 @@ while True:
                 print("Error cancelling room.")
 
         case 4:
+            hotel.hotel_records()
             print("Thank you for using the Hotel Management System.")
             break 
 

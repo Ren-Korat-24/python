@@ -14,6 +14,5 @@ class Banks(bank):
         print("Debit is :",self.balance)
 
 b =Banks()
-# balance=int(input("Enter the balanc:"))
 b.credit()
 b.debit()
