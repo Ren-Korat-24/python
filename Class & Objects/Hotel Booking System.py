@@ -37,7 +37,7 @@ class Hotel():
             print(f"Room {room_no} is not booked.")
 
     def hotel_records(self):
-         with open("Hotel_Records.txt", "a") as hotel:
+        with open("Hotel_Records.txt", "a") as hotel:
             hotel.write("\n========== Hotel Records ==========\n")
             for room_no, name in self.booked_rooms.items():
                 hotel.write(f"Room {room_no}: {name}\n")
@@ -82,10 +82,9 @@ while True:
         case 3:
             try:    
                 r1 = input("Enter room number to cancel: ")
-                if r1.isdigit():
+                if r1.isdigit:
                     room_no = int(r1)
                     hotel.cancel_booking(room_no)
-                    hotel.hotel_records()
                 else:
                     print("Invalid room number.")
             except:
