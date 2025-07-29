@@ -85,7 +85,7 @@ while True:
                 if r1.isdigit:
                     room_no = int(r1)
                     hotel.cancel_booking(room_no)
-                else:
+                else:   
                     print("Invalid room number.")
             except:
                 print("Error cancelling room.")
