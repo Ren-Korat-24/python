@@ -25,10 +25,10 @@ total = hindi + guj + ss
 percentage = total / 3
 
 # Grade
-if percentage < 33:
-    grade = 'F'
+if hindi < 33 or guj < 33 or ss < 33:
+    grade = "F"
 else:
-    grade = 'P'
+    grade = "P"
 
 # Print result
 print("\nrNo\tName\tHindi\tGuj\tSS\tMin\tMax\tTotal\tPercentage\tGrade")

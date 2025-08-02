@@ -1,0 +1,21 @@
+
+Name	Account No	Balance		Password
+roshan		123			3000		12345678
+Name	Account No	Balance		Password
+roonak		234			30000		87654321
+Name	Account No	Balance		Password
+komal		345			5000		987654321
+Name	Account No	Balance		Password
+mona		456			6000		87543216
+Name	Account No	Balance		Password
+dolly		567			8000		234567891
+Name	Account No	Balance		Password
+dolly		567			8000		234567891
+Name	Account No	Balance		Password
+dolly		567			8000		234567891
+Name	Account No	Balance		Password
+popal		1234			5000		123654321
+Name	Account No	Balance		Password
+popal		12345			50000		123333333
+Name	Account No	Balance		Password
+kokil		654			6000		654987321

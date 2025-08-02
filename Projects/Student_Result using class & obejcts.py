@@ -28,7 +28,7 @@ class Student:
         self.total = sum(marks)
         self.percentage = self.total / len(marks)
 
-        if min(marks) >= 33:
+        if all(m > 33  for m in marks):
             self.grade = "Pass"
         else:
             self.grade = "Fail"

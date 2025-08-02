@@ -30,7 +30,7 @@ class Cart:
         print(f"\n🛒 Cart Items for {self.name}:")
         total = 0
         for item in self.items:
-            print(f"- {item.name} ₹ {item.price}")
+            print(f" -{item.name} ₹ {item.price}")
             total += item.price
         print(f"Total Price: ₹{total}")
 
@@ -40,17 +40,17 @@ class Cart:
             return
 
         filename = f"cart_{self.name.lower().replace(' ', '_')}.txt"
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(f"🧾 Cart Summary for {self.name}:\n")
-            total = 0
+        with open("shopping_cart","a") as f:
+            f.write(f"+ Cart Summary for {self.name}:\n")
+            # total = 0
             for item in self.items:
                 f.write(f"- {item.name} ₹{item.price}\n")
                 total += item.price
             f.write(f"Total: ₹{total}\n")
-        print(f"✅ Cart saved to '{filename}'.")
+        print(f"Cart saved to {filename}.")
         
 
-# Ask for customer name
+#object && customer name
 customer_name = input("Enter your name: ")
 cart = Cart(customer_name)
 
@@ -63,6 +63,7 @@ products = [
     Product(5, "Monitor", 7000),
 ]
 
+# try:
 while True:
     print(f"\n========== Online Shopping Menu ({cart.name}) ==========")
     print("1: Show Products")
@@ -72,23 +73,29 @@ while True:
     print("5: Save & Exit")
     print("==========================================")
     choice = int(input("Choice: "))
+# except ValueError:
+#     print("Invalid choice of Enter the products...")
 
     match choice:
         case 1:
-            print("\n📦 Available Products:")
+            print("\n Available Products:")
             for p in products:
+                cart.save_cart()
                 print(f"{p.pid}. {p.name} - ₹ {p.price}")
 
         case 2:
-            pid_input = input("Enter Product ID to add: ")
-            if pid_input.isdigit():
-                pid = int(pid_input)
-                found = next((p for p in products if p.pid == pid), None)
-                if found:
-                    cart.add_items(found)
+            try:
+                pid_input = input("Enter Product ID to add: ")
+                if pid_input.isdigit():
+                    pid = int(pid_input)
+                    found = next((p for p in products if p.pid == pid), None)
+                    if found:
+                        cart.add_items(found)
+                    else:
+                        print("Invalid product ID.")
                 else:
-                    print("Invalid product ID.")
-            else:
+                    print("Please enter a valid number.")
+            except:
                 print("Please enter a valid number.")
 
         case 3:
@@ -96,6 +103,7 @@ while True:
             if pid_input.isdigit():
                 pid = int(pid_input)
                 cart.remove_items(pid)
+                cart.save_cart()
             else:
                 print("Please enter a valid number.")
 
@@ -104,8 +112,8 @@ while True:
 
         case 5:
             cart.save_cart()
-            print("\n🛍️ Thank you for shopping with us! Goodbye.")
+            print("\nThank you for shopping with us! Goodbye.")
             break
 
         case _:
-            print("⚠️ Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.")

@@ -4,7 +4,7 @@ mtset3={60,70,80}
 set3 = {"John", "Elena"}
 set4 = {"apple", "bananas", "cherry"}
 
-mtset3^=myset
+mtset3=myset
 print(mtset3)
 
 # mtset3=myset.symmetric_difference(myset2)

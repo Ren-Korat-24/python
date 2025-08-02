@@ -26,7 +26,7 @@ class Hotel():
 
         if len(available_rooms) == 0:
             print("No available rooms.")
-        else:
+        else:   
             print("Available Rooms:", available_rooms)
         
     def cancel_booking(self,room_no):
@@ -54,7 +54,7 @@ while True:
     print("=============================================")
 
     try:
-        choice = int(input("Choice: "))
+        choice = int(input("Choice :"))
     except ValueError:
         print("Enter a valid number:")
         continue  #Restart the loop if invalid input
