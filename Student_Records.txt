@@ -1,6 +1,0 @@
-						Student Records 
-Roll No		Nattme	Hindi	Gujarati	SS		Total	Percentage	Grade
-0					0		0			0		0		0.00%		Fail
-						Student Records 
-Roll No		Nattme	Hindi	Gujarati	SS		Total	Percentage	Grade
-1			rohiha		56		23			66		145		48.33%		Fail
