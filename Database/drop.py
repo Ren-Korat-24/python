@@ -2,13 +2,14 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
   host="localhost",
-  user="yourusername",
-  password="yourpassword",
-  database="mydatabase"
+  user="root",
+  password="",
+  port=3307,
+  database="ren"
 )
 
 mycursor = mydb.cursor()
 
-sql = "DROP TABLE customers"
+sql = "DROP TABLE user where id=2"
 
 mycursor.execute(sql)

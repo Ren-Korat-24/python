@@ -11,9 +11,9 @@ mydb = mysql.connector.connect(
 print("Connected successfully")
 
 mycursor = mydb.cursor()
-id=input("Enter the number:")
-
-mycursor.execute("DELETE FROM user WHERE id = %s")
+id=input("Enter the id no:")
+sql= "DELETE FROM user WHERE id = %s"
+mycursor.execute(sql,(id,))
 
 mydb.commit()
 

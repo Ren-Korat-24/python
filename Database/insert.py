@@ -17,8 +17,7 @@ contact=input('enter contact=')
 password=input('enter password=') 
 
 sql="insert into user(name,contact, email, password) values(%s,%s,%s,%s)" 
-val=[('haresh','398457','haresh@gmail.com','123456'),('jaydip','345678','jaydip@gmail.com','567')] 
- 
+val=(name,email,contact,id,password)
 mycursor.execute(sql,val) 
 mydb.commit() 
  
