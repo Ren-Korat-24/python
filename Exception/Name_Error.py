@@ -1,3 +1,0 @@
-geer="abc"
-
-print(ggeks)
