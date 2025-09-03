@@ -1,5 +1,5 @@
-a=10
-b=0
+a=100
+b=20
 
 #First try..
 try:

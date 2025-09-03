@@ -1,13 +1,16 @@
-import os
 import mysql.connector
+import os
 
 mydb = mysql.connector.connect(
-    host="localhost", user="root", password="", port=3307, database="ren"
-)   
+    host="localhost", user="root", port=3306, password="", database="ren"
+)
+
+print(mydb)
 if mydb.is_connected():
     print("Connected successfully")
 else:
     print("Not Connected..")
+
 
 class Bank:
     # Constructor
@@ -89,11 +92,15 @@ def bank_records():
 # Store
 AcountDetails = []
 
+
 # account function
 def get_data(acnum):
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT acnum,name,password,balance FROM bank where acnum=%s",(acnum,))
+    mycursor.execute(
+        "SELECT acnum,name,password,balance FROM bank where acnum=%s", (acnum,)
+    )
     return mycursor.fetchone()
+
 
 while True:
     print("\n========== Bank Management System ==========")
@@ -157,7 +164,13 @@ while True:
                     b.creditMoney()
 
                     update_cursor = mydb.cursor()
-                    update_cursor.execute("UPDATE bank SET balance = %s WHERE acnum = %s",(b.balance, b.acnum,))
+                    update_cursor.execute(
+                        "UPDATE bank SET balance = %s WHERE acnum = %s",
+                        (
+                            b.balance,
+                            b.acnum,
+                        ),
+                    )
                     mydb.commit()
                     print("Balance updated in database.")
                 else:
@@ -165,7 +178,7 @@ while True:
             else:
                 print("Account not found.")
 
-        case 4:  
+        case 4:
             fnum = int(input("Enter account number: "))
             mycursor = mydb.cursor()
             sql = "SELECT * FROM bank WHERE acnum = %s"
@@ -185,7 +198,10 @@ while True:
                     b.withdrawMoney()
 
                     update_cursor = mydb.cursor()
-                    update_cursor.execute("UPDATE bank SET balance = %s WHERE acnum = %s",(b.balance, b.acnum),)
+                    update_cursor.execute(
+                        "UPDATE bank SET balance = %s WHERE acnum = %s",
+                        (b.balance, b.acnum),
+                    )
                     mydb.commit()
                     print("Balance updated in database.")
                 else:
@@ -227,8 +243,14 @@ while True:
 
                     sender.transferMoney(amount, receiver)
                     update_cursor = mydb.cursor()
-                    update_cursor.execute("UPDATE bank SET balance = %s WHERE acnum = %s",(sender.balance, sender.acnum),)
-                    update_cursor.execute("UPDATE bank SET balance = %s WHERE acnum = %s",(receiver.balance, receiver.acnum),)
+                    update_cursor.execute(
+                        "UPDATE bank SET balance = %s WHERE acnum = %s",
+                        (sender.balance, sender.acnum),
+                    )
+                    update_cursor.execute(
+                        "UPDATE bank SET balance = %s WHERE acnum = %s",
+                        (receiver.balance, receiver.acnum),
+                    )
                     mydb.commit()
                 else:
                     print("Invalid Password...")
